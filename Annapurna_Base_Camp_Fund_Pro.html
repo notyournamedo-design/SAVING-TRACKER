@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1220">
+<title>ABC Fund — Annapurna Base Camp</title>
+<style>
+:root{--bg:#080e19;--panel:#111b2b;--panel2:#162338;--line:#26364d;--text:#eef5ff;--muted:#91a3bb;--green:#49d69b;--green2:#1eaa79;--blue:#77aaff;--red:#ff7e87;--shadow:0 18px 50px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#17304a 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer}.app{max-width:1120px;margin:auto;padding:28px 22px 56px}
+header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:30px}.brand{display:flex;align-items:center;gap:13px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#58e0a7,#168b70);display:grid;place-items:center;color:#05251d;font-size:23px;box-shadow:0 8px 24px #35c99535}.brand h1{font-size:18px;margin:0;letter-spacing:.2px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.header-actions{display:flex;gap:9px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:#172438;color:var(--text);padding:10px 14px;border-radius:11px;font-weight:650;transition:.2s}.btn:hover{transform:translateY(-1px);border-color:#55718e}.btn.primary{background:linear-gradient(135deg,var(--green),#24b982);border:0;color:#05251c}.btn.danger{color:var(--red)}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#172d3b,#14253a 60%,#172d36);border:1px solid #2b4a53;border-radius:24px;padding:28px 30px;margin-bottom:18px;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #6ce1b01c;border-radius:50%;right:-80px;top:-120px;box-shadow:0 0 0 28px #6ce1b00b,0 0 0 58px #6ce1b008}.hero h2{font-size:clamp(24px,4vw,36px);line-height:1.15;margin:8px 0}.hero p{color:#b0c4d4;margin:0;max-width:570px}.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.goal-chip{position:relative;z-index:1;background:#ffffff0c;border:1px solid #ffffff1a;border-radius:13px;padding:10px 14px;min-width:140px}.goal-chip small{display:block;color:#a8bfca}.goal-chip strong{font-size:20px}
+.progress-wrap{margin-top:25px;position:relative;z-index:1}.progress-label{display:flex;justify-content:space-between;gap:10px;color:#c4d5df;font-size:13px;margin-bottom:9px}.track{height:12px;border-radius:99px;background:#07151c;overflow:hidden;border:1px solid #ffffff10}.fill{height:100%;width:0;background:linear-gradient(90deg,#31bd89,#8ce8ba);border-radius:99px;transition:width .45s ease;box-shadow:0 0 18px #49d69b66}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:18px 0}.stat,.panel{background:linear-gradient(145deg,#121e30,#101a29);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px #0002}.stat{padding:17px}.stat-head{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}.stat-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:#49d69b17;color:var(--green)}.stat strong{display:block;font-size:clamp(19px,2.5vw,25px);margin-top:9px;letter-spacing:-.5px}.stat small{color:var(--muted);font-size:11px}
+.content{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.panel{padding:20px;min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panel-title h3{font-size:16px;margin:0}.panel-title span{font-size:12px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:13px}.field label{font-size:12px;color:#b6c6d8;font-weight:650}.field input{width:100%;background:#0b1422;border:1px solid #30425a;color:var(--text);border-radius:11px;padding:12px 13px;outline:none}.field input:focus{border-color:var(--green);box-shadow:0 0 0 3px #49d69b18}.input-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-actions{display:flex;gap:9px;align-items:center}.form-actions .primary{flex:1}.hint{font-size:11px;color:var(--muted);margin:11px 0 0}
+.chart-box{height:220px;position:relative}.chart-box canvas{width:100%;height:100%;display:block}.chart-legend{display:flex;gap:16px;color:var(--muted);font-size:11px;margin-top:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px}.chart-empty{color:var(--muted);font-size:13px;text-align:center;padding-top:85px}
+.lower{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.history{margin-top:16px}.transaction-list{display:flex;flex-direction:column;gap:9px;max-height:330px;overflow:auto}.tx{display:flex;align-items:center;gap:12px;padding:11px 12px;background:#0c1625;border:1px solid #223249;border-radius:12px}.tx-icon{width:35px;height:35px;border-radius:11px;display:grid;place-items:center;background:#49d69b17;color:var(--green);flex:none}.tx-main{flex:1;min-width:0}.tx-main strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tx-main small{color:var(--muted);font-size:11px}.tx-amount{font-weight:750;color:var(--green);font-size:13px;white-space:nowrap}.delete{border:0;background:transparent;color:#71839b;font-size:18px;padding:3px 6px}.delete:hover{color:var(--red)}.empty{padding:28px 10px;text-align:center;color:var(--muted);font-size:13px}.goal-form{display:flex;gap:9px}.goal-form input{flex:1;min-width:0;background:#0b1422;border:1px solid #30425a;color:var(--text);border-radius:11px;padding:11px}.goal-form button{white-space:nowrap}.backup-actions{display:flex;gap:9px;flex-wrap:wrap}.backup-actions .btn{flex:1}.notice{font-size:11px;color:var(--muted);margin:12px 0 0}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#dffcef;color:#073524;padding:11px 16px;border-radius:12px;font-weight:700;box-shadow:var(--shadow);transition:.25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}footer{text-align:center;color:#657891;font-size:11px;margin-top:26px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.content,.lower{grid-template-columns:1fr}}@media(max-width:520px){.app{padding:18px 13px 40px}header{align-items:flex-start}.brand h1{font-size:16px}.header-actions{justify-content:flex-end}.header-actions .btn{padding:8px 10px;font-size:12px}.hero{padding:22px 18px}.hero-top{flex-direction:column}.goal-chip{min-width:0}.stat{padding:14px}.panel{padding:16px}.input-row{grid-template-columns:1fr}.form-actions{flex-direction:column}.form-actions button{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="logo">⌁</div><div><h1>ABC Fund</h1><p>ANNAPURNA BASE CAMP • NEPAL</p></div></div>
+  <div class="header-actions"><button class="btn" id="exportTop">↓ Export backup</button><button class="btn" id="importTop">↑ Import</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
+</header>
+
+<section class="hero">
+  <div class="hero-top"><div><div class="eyebrow">Your next great adventure</div><h2>Every taka takes you<br>closer to the mountains.</h2><p>Build your Annapurna Base Camp fund one deposit at a time. Keep your goal in sight and track your progress.</p></div>
+    <div class="goal-chip"><small>Target savings</small><strong id="heroGoal">৳30,000</strong></div>
+  </div>
+  <div class="progress-wrap"><div class="progress-label"><span id="progressText">0% completed</span><span id="remainingText">৳30,000 to go</span></div><div class="track"><div class="fill" id="progressFill"></div></div></div>
+</section>
+
+<section class="stats">
+  <div class="stat"><div class="stat-head"><span>Total saved</span><span class="stat-icon">↗</span></div><strong id="totalSaved">৳0</strong><small>Across all deposits</small></div>
+  <div class="stat"><div class="stat-head"><span>Remaining</span><span class="stat-icon">◎</span></div><strong id="remaining">৳30,000</strong><small>Until your target</small></div>
+  <div class="stat"><div class="stat-head"><span>This month</span><span class="stat-icon">▦</span></div><strong id="monthSaved">৳0</strong><small>Deposited this month</small></div>
+  <div class="stat"><div class="stat-head"><span>Deposits</span><span class="stat-icon">＋</span></div><strong id="depositCount">0</strong><small>Recorded transactions</small></div>
+</section>
+
+<div class="content">
+  <section class="panel">
+    <div class="panel-title"><h3>Add to your fund</h3><span>Keep the momentum</span></div>
+    <form id="depositForm">
+      <div class="field"><label for="amount">Deposit amount (BDT)</label><input id="amount" type="number" min="1" step="0.01" placeholder="e.g. 500" required></div>
+      <div class="field"><label for="note">Note <span style="color:#71839b;font-weight:400">(optional)</span></label><input id="note" type="text" maxlength="70" placeholder="e.g. Weekly savings"></div>
+      <div class="form-actions"><button class="btn primary" type="submit">＋ Add deposit</button><button class="btn" type="button" id="clearForm">Clear</button></div>
+    </form>
+    <p class="hint">Your entries are saved in this browser on this device.</p>
+  </section>
+  <section class="panel">
+    <div class="panel-title"><h3>Savings growth</h3><span>Last 6 months</span></div>
+    <div class="chart-box" id="chartBox"><canvas id="savingsChart" aria-label="Savings growth chart"></canvas></div>
+    <div class="chart-legend"><span><i class="dot"></i>Cumulative savings</span></div>
+  </section>
+</div>
+
+<div class="lower">
+  <section class="panel">
+    <div class="panel-title"><h3>Monthly statistics</h3><span>Recent activity</span></div>
+    <div class="chart-box"><canvas id="monthlyChart" aria-label="Monthly deposits chart"></canvas></div>
+    <div class="chart-legend"><span><i class="dot"></i>Deposits per month</span></div>
+  </section>
+  <section class="panel">
+    <div class="panel-title"><h3>Customize your goal</h3><span>Make it yours</span></div>
+    <div class="field"><label for="goalInput">Savings target (BDT)</label><div class="goal-form"><input id="goalInput" type="number" min="1" step="1" placeholder="30000"><button class="btn primary" id="saveGoal" type="button">Update goal</button></div></div>
+    <p class="hint">Changing your target won't change or remove your saved transactions.</p>
+    <div style="height:1px;background:var(--line);margin:18px 0"></div>
+    <div class="panel-title"><h3>Backup your fund</h3><span>Keep it safe</span></div>
+    <div class="backup-actions"><button class="btn" id="exportBtn">↓ Download backup</button><button class="btn" id="importBtn">↑ Restore backup</button></div>
+    <p class="notice">Export a JSON backup before switching browsers or devices. Importing a backup replaces the current data.</p>
+  </section>
+</div>
+
+<section class="panel history">
+  <div class="panel-title"><h3>Transaction history</h3><span id="historyCount">0 entries</span></div>
+  <div class="transaction-list" id="transactions"><div class="empty">No deposits yet. Your first step toward ABC starts here.</div></div>
+</section>
+<footer>Made for the journey to Annapurna Base Camp · Your savings stay on this device</footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+  const KEY = 'abcFundData_v2';
+  const $ = id => document.getElementById(id);
+  const money = n => '৳' + Number(n || 0).toLocaleString('en-BD',{maximumFractionDigits:2});
+  const monthKey = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+  const monthLabel = d => d.toLocaleDateString('en-US',{month:'short'});
+  let data = load();
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(KEY);
+      if(raw){const x=JSON.parse(raw);return {goal:validGoal(x.goal),transactions:validTransactions(x.transactions)};}
+      // Migrate the original project's saved total, if present.
+      const old = Number(localStorage.getItem('saved'));
+      return {goal:30000,transactions:Number.isFinite(old)&&old>0?[{id:cryptoId(),amount:old,note:'Previous savings balance',date:new Date().toISOString()}]:[]};
+    }catch(e){return {goal:30000,transactions:[]};}
+  }
+  function validGoal(v){const n=Number(v);return Number.isFinite(n)&&n>0?n:30000;}
+  function validTransactions(arr){if(!Array.isArray(arr))return [];return arr.filter(t=>t&&Number(t.amount)>0&&Number.isFinite(Number(t.amount))&&t.date).map(t=>({id:String(t.id||cryptoId()),amount:Number(t.amount),note:String(t.note||'Deposit').slice(0,70),date:new Date(t.date).toISOString()})).sort((a,b)=>new Date(b.date)-new Date(a.date));}
+  function cryptoId(){return (window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now())+Math.random().toString(16).slice(2);}
+  function save(){localStorage.setItem(KEY,JSON.stringify(data));}
+  function total(){return data.transactions.reduce((s,t)=>s+t.amount,0);}
+  function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2400);}
+  function render(){
+    const sum=total(),pct=Math.min(sum/data.goal*100,100),remaining=Math.max(data.goal-sum,0),now=new Date(),thisMonth=data.transactions.filter(t=>monthKey(new Date(t.date))===monthKey(now)).reduce((s,t)=>s+t.amount,0);
+    $('heroGoal').textContent=money(data.goal);$('totalSaved').textContent=money(sum);$('remaining').textContent=money(remaining);$('monthSaved').textContent=money(thisMonth);$('depositCount').textContent=data.transactions.length.toLocaleString();
+    $('progressText').textContent=pct.toFixed(1)+'% completed';$('remainingText').textContent=remaining?money(remaining)+' to go':'Goal reached!';$('progressFill').style.width=pct+'%';
+    $('goalInput').value=data.goal;$('historyCount').textContent=data.transactions.length+' '+(data.transactions.length===1?'entry':'entries');
+    renderTransactions();drawCharts();
+  }
+  function renderTransactions(){
+    const root=$('transactions');root.innerHTML='';
+    if(!data.transactions.length){root.innerHTML='<div class="empty">No deposits yet. Your first step toward ABC starts here.</div>';return;}
+    data.transactions.forEach(t=>{
+      const row=document.createElement('div');row.className='tx';
+      const icon=document.createElement('div');icon.className='tx-icon';icon.textContent='↗';
+      const main=document.createElement('div');main.className='tx-main';
+      const title=document.createElement('strong');title.textContent=t.note||'Deposit';
+      const date=document.createElement('small');date.textContent=new Date(t.date).toLocaleString('en-BD',{dateStyle:'medium',timeStyle:'short'});
+      main.append(title,date);
+      const amount=document.createElement('div');amount.className='tx-amount';amount.textContent='+'+money(t.amount);
+      const del=document.createElement('button');del.className='delete';del.type='button';del.title='Delete transaction';del.setAttribute('aria-label','Delete '+money(t.amount));del.textContent='×';del.addEventListener('click',()=>{if(confirm('Delete this deposit? Your total will be updated.')){data.transactions=data.transactions.filter(x=>x.id!==t.id);save();render();toast('Deposit deleted');}});
+      row.append(icon,main,amount,del);root.append(row);
+    });
+  }
+  function setupCanvas(canvas){
+    const rect=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1,w=Math.max(rect.width,260),h=Math.max(rect.height,180);
+    canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);return {ctx,w,h};
+  }
+  function drawChart(canvas,labels,values,mode){
+    const {ctx,w,h}=setupCanvas(canvas),left=43,right=10,top=12,bottom=28,cw=w-left-right,ch=h-top-bottom;
+    ctx.clearRect(0,0,w,h);const max=Math.max(...values,1);const ceiling=max*1.18;
+    ctx.font='10px system-ui';ctx.fillStyle='#8093ab';ctx.strokeStyle='#26364d';ctx.lineWidth=1;
+    for(let i=0;i<4;i++){const y=top+ch*i/3;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();ctx.fillText(Math.round(ceiling*(1-i/3)).toLocaleString('en'),3,y+3);}
+    const points=values.map((v,i)=>({x:left+(labels.length===1?cw/2:i*cw/(labels.length-1)),y:top+ch-(v/ceiling)*ch}));
+    if(mode==='area'&&points.length){const grad=ctx.createLinearGradient(0,top,0,h-bottom);grad.addColorStop(0,'#49d69b55');grad.addColorStop(1,'#49d69b00');ctx.beginPath();ctx.moveTo(points[0].x,top+ch);points.forEach(p=>ctx.lineTo(p.x,p.y));ctx.lineTo(points[points.length-1].x,top+ch);ctx.closePath();ctx.fillStyle=grad;ctx.fill();}
+    if(mode==='bar'){const slot=cw/labels.length,bw=Math.min(25,slot*.48);points.forEach(p=>{ctx.fillStyle='#49d69b';ctx.beginPath();ctx.roundRect(p.x-bw/2,p.y,bw,top+ch-p.y,5);ctx.fill();});}
+    else if(points.length>1){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle='#49d69b';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.stroke();}
+    points.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);ctx.fillStyle='#9af0c5';ctx.fill();});
+    labels.forEach((label,i)=>{const x=left+(labels.length===1?cw/2:i*cw/(labels.length-1));ctx.fillStyle='#8093ab';ctx.textAlign='center';ctx.fillText(label,x,h-8);});ctx.textAlign='left';
+  }
+  function drawCharts(){
+    const now=new Date(),months=[];
+    for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push(d);}
+    let running=0;const all=[...data.transactions].sort((a,b)=>new Date(a.date)-new Date(b.date));
+    const cumulative=months.map(d=>{const end=new Date(d.getFullYear(),d.getMonth()+1,1);running=all.filter(t=>new Date(t.date)<end).reduce((s,t)=>s+t.amount,0);return running;});
+    drawChart($('savingsChart'),months.map(monthLabel),cumulative,'area');
+    const monthly=months.map(d=>all.filter(t=>{const x=new Date(t.date);return x.getFullYear()===d.getFullYear()&&x.getMonth()===d.getMonth();}).reduce((s,t)=>s+t.amount,0));
+    drawChart($('monthlyChart'),months.map(monthLabel),monthly,'bar');
+  }
+  $('depositForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number($('amount').value);if(!Number.isFinite(amount)||amount<=0){toast('Enter an amount greater than zero');return;}data.transactions.unshift({id:cryptoId(),amount,note:$('note').value.trim()||'Deposit',date:new Date().toISOString()});save();$('amount').value='';$('note').value='';render();toast('Deposit added to your ABC fund');});
+  $('clearForm').addEventListener('click',()=>{$('amount').value='';$('note').value='';});
+  $('saveGoal').addEventListener('click',()=>{const goal=Number($('goalInput').value);if(!Number.isFinite(goal)||goal<=0){toast('Enter a valid goal above zero');return;}data.goal=goal;save();render();toast('Savings goal updated');});
+  function exportBackup(){const payload={app:'Annapurna Base Camp Fund',version:2,exportedAt:new Date().toISOString(),goal:data.goal,transactions:data.transactions};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='annapurna-base-camp-fund-backup.json';a.click();URL.revokeObjectURL(url);toast('Backup downloaded');}
+  function importBackup(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const x=JSON.parse(reader.result);if(!x||!Array.isArray(x.transactions)||!(Number(x.goal)>0))throw new Error('Invalid backup');if(!confirm('Restore this backup? It will replace the current goal and transaction history.'))return;data={goal:validGoal(x.goal),transactions:validTransactions(x.transactions)};save();render();toast('Backup restored successfully');}catch(e){toast('Could not read this backup file');}};reader.readAsText(file);}
+  $('exportBtn').addEventListener('click',exportBackup);$('exportTop').addEventListener('click',exportBackup);
+  $('importBtn').addEventListener('click',()=>$('importFile').click());$('importTop').addEventListener('click',()=>$('importFile').click());
+  $('importFile').addEventListener('change',e=>{importBackup(e.target.files[0]);e.target.value='';});
+  window.addEventListener('resize',()=>{clearTimeout(window.resizeTimer);window.resizeTimer=setTimeout(drawCharts,120);});
+  render();
+})();
+</script>
+</body>
+</html>
